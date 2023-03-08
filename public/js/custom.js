@@ -142,6 +142,12 @@
             }
             
         });
+
+
+        $("#cerrar_alert").click(function(){
+            sessionStorage.clear();
+            $("#error_alert").remove();
+        });
     });
 
     $(document).on('input change', '#range-neto', function() {

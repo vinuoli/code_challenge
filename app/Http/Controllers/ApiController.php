@@ -74,6 +74,7 @@ class ApiController extends Controller
 
         $registry = new Registered;
         $registered_id = null;
+        date_default_timezone_set("Europe/Madrid");
         try
         {
             $registry->full_name = $request->full_name;
@@ -83,7 +84,7 @@ class ApiController extends Controller
             $registry->requested_amount = $request->cantidad;
             $registry->initial_communication_time =  $request->time_desde.":00";
             $registry->end_communication_time = $time_hasta;
-    
+            $registry->registration = date("Y-m-d H:i:s");
             $expert_id = Expert::select('experts_id')->whereRaw('total_active_cases = (select min(total_active_cases) from experts)')->first()->experts_id;
             $registry->id_expert_assigned = $expert_id;
     
@@ -104,7 +105,7 @@ class ApiController extends Controller
                 $request->session()->put('duplicado','El email introducido ya se ha registrado. Un experto se pondrá en contacto con usted en la franja horaria seleccionada, muchas gracias.');
                 return back();
             }else{
-                $request->session()->put('error','Algo ha salido mal.');
+                $request->session()->put('error',$ex->getMessage());
                 return back();
             }
         } 
