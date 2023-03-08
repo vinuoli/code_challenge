@@ -19,6 +19,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('register',[ApiController::class, 'registration']);
-Route::get('registereds',[ApiController::class, 'registereds']);
-Route::get('experts',[ApiController::class, 'experts']);
+Route::apiResource('solicitud',ApiController::class);
+Route::get('registrados',[ApiController::class, 'registereds']);
+Route::get('expertos',[ApiController::class, 'experts']);
+Route::get('gracias/{registered_id}',[ApiController::class,'grateful'])->name('gracias');
+Route::post('registro',[ApiController::class, 'store']);
+
+

@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Expert;
 
 class Registered extends Model
 {
@@ -30,7 +31,7 @@ class Registered extends Model
     
     public function experts()
     {
-        return $this->belongsTo('App\Models\Experts','id_expert_assigned', 'experts_id');
+        return $this->belongsTo('App\Models\Expert','id_expert_assigned', 'experts_id');
     }
     
 }
