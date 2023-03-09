@@ -8,7 +8,6 @@ use App\Models\Expert;
 use App\Models\Registered;
 use Exception;
 use Illuminate\Support\Facades\Redirect;
-use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 
 class ApiController extends Controller
